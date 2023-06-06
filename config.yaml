@@ -1,35 +1,34 @@
-baseURL: http://example.org/
+baseURL: https://jeanmichelstaelens.netlify.app
 languageCode: en-us
-title: Forty
+title: Portfolio website for Jean-Michel Staelens
 theme: forty
 googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
     buttonText: Get Started
-    subtitle: |-
-      A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
-      AND RELEASED UNDER THE CREATIVE COMMONS.
-    title: Hi, my name is Forty
+    #subtitle: |-
+    #  I am a current MBA2024 student at LBS. Welcome to my portfolio website!
+    title: Hi, my name is Jean-Michel!
   blog: {}
   contact:
     address:
-      - city: City, ST 00000
-        country: Country
-        street: Street
+      - city: London, AA1 2BB
+        country: United Kingdom
+        street: Abbey Road
         title: Address
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: example@domain.com
+      - email: notmyrealemail@london.edu
         title: Email
     enable: yes
     phone:
-      - phone: (000) 000-0000 x1234
+      - phone: (+44) 123-4567 x1234
         title: Phone
   custom_css: []
   custom_js: []
-  description: Your description
+  description: I am a current MBA2024 student at LBS. Welcome to my portfolio website!
   error404:
     heading: Page couldn't be found
     text: Please visit [this page](/)
@@ -42,23 +41,23 @@ params:
         text: 'Design: '
         url: https://www.html5up.net
     social:
-      - icon: fa-twitter
-        label: Twitter
-        url: https://www.twitter.com
-      - icon: fa-facebook
-        label: Facebook
-        url: https://www.facebook.com
-      - icon: fa-instagram
-        label: Instagram
-        url: https://www.instagram.com
+#      - icon: fa-twitter
+#        label: Twitter
+#        url: https://www.twitter.com
+#      - icon: fa-facebook
+#        label: Facebook
+#        url: https://www.facebook.com
+#      - icon: fa-instagram
+#        label: Instagram
+#        url: https://www.instagram.com
       - icon: fa-github
         label: GitHub
-        url: https://www.github.com
+        url: https://www.github.com/jmstaelens95
       - icon: fa-linkedin
         label: LinkedIn
-        url: https://www.linkedin.com
-  image: ''
-  name: Your name
+        url: https://www.linkedin.com/in/jmstaelens
+  image: '28'
+  name: Jean-Michel Staelens
   navigation:
     button1:
       - name: Get Started

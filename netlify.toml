@@ -6,11 +6,11 @@ command = "hugo"
 HUGO_VERSION = "0.111.3"
 HUGO_ENABLEGITINFO = "true"
 
-[context.production.environment]9
+[context.production.environment]
 HUGO_ENV = "production"
 
-[context.branch-deploy.environment]12
+[context.branch-deploy.environment]
 HUGO_VERSION = "0.111.3"
 
-[context.deploy-preview.environment]15
+[context.deploy-preview.environment]
 HUGO_VERSION = "0.111.3"
