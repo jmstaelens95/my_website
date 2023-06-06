@@ -11,17 +11,40 @@ keywords: ""
 slug: risk_return # slug is the shorthand URL address... no spaces plz
 title: Risk-Return of DJIA stocks
 ---
-  
 
 
 
 
 
 
+```r
+# add a nice tulip picture
+knitr::include_graphics(here::here("static/img/pic1.jpg"))
+```
 
+<img src="../../static/img/pic1.jpg" style="display: block; margin: auto;" />
 
+```r
+# read and show brexit results
+brexit_results <- read_csv(here::here("data","brexit_results.csv"))
+glimpse(brexit_results)
+```
 
-knitr::include_graphics("/img/pic1.jpg",error=FALSE)
+```
+## Rows: 632
+## Columns: 11
+## $ Seat        <chr> "Aldershot", "Aldridge-Brownhills", "Altrincham and Sale W…
+## $ con_2015    <dbl> 50.6, 52.0, 53.0, 44.0, 60.8, 22.4, 52.5, 22.1, 50.7, 53.0…
+## $ lab_2015    <dbl> 18.3, 22.4, 26.7, 34.8, 11.2, 41.0, 18.4, 49.8, 15.1, 21.3…
+## $ ld_2015     <dbl> 8.82, 3.37, 8.38, 2.98, 7.19, 14.83, 5.98, 2.42, 10.62, 5.…
+## $ ukip_2015   <dbl> 17.87, 19.62, 8.01, 15.89, 14.44, 21.41, 18.82, 21.76, 19.…
+## $ leave_share <dbl> 57.9, 67.8, 38.6, 65.3, 49.7, 70.5, 59.9, 61.8, 51.8, 50.3…
+## $ born_in_uk  <dbl> 83.1, 96.1, 90.5, 97.3, 93.3, 97.0, 90.5, 90.7, 87.0, 88.8…
+## $ male        <dbl> 49.9, 48.9, 48.9, 49.2, 48.0, 49.2, 48.5, 49.2, 49.5, 49.5…
+## $ unemployed  <dbl> 3.64, 4.55, 3.04, 4.26, 2.47, 4.74, 3.69, 5.11, 3.39, 2.93…
+## $ degree      <dbl> 13.87, 9.97, 28.60, 9.34, 18.78, 6.09, 13.12, 7.90, 17.80,…
+## $ age_18to24  <dbl> 9.41, 7.33, 6.44, 7.75, 5.73, 8.21, 7.82, 8.94, 7.56, 7.61…
+```
 
 # Returns of financial stocks
 
@@ -69,9 +92,6 @@ tickers <- table1 %>%
 ```
 
 
-
-
-
 ```r
 # Notice the cache=TRUE argument in the chunk options. Because getting data is time consuming, # cache=TRUE means that once it downloads data, the chunk will not run again next time you knit your Rmd
 
@@ -98,7 +118,6 @@ glimpse(myStocks) # examine the structure of the resulting data frame
 ```
 
 Financial performance analysis depend on returns; If I buy a stock today for 100 and I sell it tomorrow for 101.75, my one-day return, assuming no transaction costs, is 1.75%. So given the adjusted closing prices, our first step is to calculate daily and monthly returns.
-
 
 
 ```r
@@ -142,7 +161,6 @@ myStocks_returns_monthly %>%
   NULL
 ```
 
-<img src="/blogs/risk_return_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" />
-
+<img src="/blogs/risk_return_files/figure-html/unnamed-chunk-2-1.png" width="648" style="display: block; margin: auto;" />
 
 <img src="/blogs/risk_return_files/figure-html/risk_return-1.png" width="648" style="display: block; margin: auto;" />
