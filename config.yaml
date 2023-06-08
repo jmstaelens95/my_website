@@ -20,7 +20,7 @@ params:
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: notmyrealemail@london.edu
+      - email: jstaelens.mba2024@london.edu
         title: Email
     enable: yes
     phone:
@@ -81,26 +81,26 @@ params:
     enable: yes
     showcase:
       - image: lbs.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
+        subtitle: Returns of financial stocks (DJIA)
+        title: Risk return
         url: blogs/risk_return
-      - image: pic02.jpg
+      - image: Amsterdam.jpg
         subtitle: Feugiat Amet Tempus
         title: Tempus
         url: blogs/tempus
-      - image: pic03.jpg
+      - image: kurhaus.jpg
         subtitle: Lorem Etiam Nullam
         title: Magna
         url: blogs/magna
-      - image: pic04.jpg
+      - image: mondrian_composition.jpg
         subtitle: Nisl Sed Aliquam
         title: Ipsum
         url: blogs/ipsum
-      - image: pic05.jpg
+      - image: Johannes_Vermeer.jpg
         subtitle: Ipsum Dolor Sit Amet
         title: Consequat
         url: blogs/ipsum
-      - image: pic06.jpg
+      - image: Vincent_van_Gogh.jpg
         subtitle: Feugiat Amet Tempus
         title: Etiam
         url: blogs/ipsum
