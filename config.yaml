@@ -99,11 +99,11 @@ params:
       - image: Johannes_Vermeer.jpg
         subtitle: Introduction to web scraping
         title: Homework 3
-        url: blogs/ipsum
+        url: blogs/homework3.Rmd
       - image: Vincent_van_Gogh.jpg
         subtitle: Introduction to Machine Learning
         title: Homework 4
-        url: blogs/ipsum
+        url: blogs/homework4.Rmd
   two:
     buttonText: Get Started
     enable: yes

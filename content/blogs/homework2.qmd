@@ -26,7 +26,7 @@ library(here)
 
 # Data Visualisation - Exploration
 
-Now that you've demonstrated your software is setup, and you have the basics of data manipulation, the goal of this assignment is to practice transforming, visualising, and exploring data.
+Now that you've demonstrated your software is setup, and you have the basics of data manipulation, the goal of this assignment is to practice transforming, visualizing, and exploring data.
 
 # Mass shootings in the US
 
@@ -46,7 +46,7 @@ glimpse(mass_shootings)
 ```
 
 | column(variable)     | description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
+|--------------------------|----------------------------------------------|
 | case                 | short name of incident                                                      |
 | year, month, day     | year, month, day in which the shooting occurred                             |
 | location             | city and state where the shooting occcurred                                 |
