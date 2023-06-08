@@ -93,7 +93,7 @@ params:
         title: Homework 1
         url: blogs/homework1.qmd
       - image: mondrian_composition.jpg
-        subtitle: Nisl Sed Aliquam
+        subtitle: Introduction to data visualization
         title: Homework 2
         url: blogs/homework2
       - image: Johannes_Vermeer.jpg

@@ -46,7 +46,7 @@ glimpse(mass_shootings)
 ```
 
 | column(variable)     | description                                                                 |
-|--------------------------|----------------------------------------------|
+|----------------------|-----------------------------------------------------------------------------|
 | case                 | short name of incident                                                      |
 | year, month, day     | year, month, day in which the shooting occurred                             |
 | location             | city and state where the shooting occcurred                                 |
@@ -201,7 +201,7 @@ The dataset we will use consists of credit card transactions and it includes inf
 
 ## Obtain the data
 
-The dataset is too large to be hosted on Canvas or Github, so please download it from dropbox https://www.dropbox.com/sh/q1yk8mmnbbrzavl/AAAxzRtIhag9Nc_hODafGV2ka?dl=0 and save it in your `dsb` repo, under the `data` folder
+The dataset is too large to be hosted on Canvas or Github, so please download it from dropbox <https://www.dropbox.com/sh/q1yk8mmnbbrzavl/AAAxzRtIhag9Nc_hODafGV2ka?dl=0> and save it in your `dsb` repo, under the `data` folder
 
 ```{r}
 #| echo: false
@@ -242,7 +242,7 @@ card_fraud %>%
   summarize(count = n())
 ```
 
--   How much money (in US\$ terms) are fraudulent transactions costing the company? Generate a table that summarizes the total amount of legitimate and fraudulent transactions per year and calculate the % of fraudulent transactions, in US\$ terms.
+-   How much money (in US$ terms) are fraudulent transactions costing the company? Generate a table that summarizes the total amount of legitimate and fraudulent transactions per year and calculate the % of fraudulent transactions, in US$ terms.
 
 ```{r}
 card_fraud %>%
@@ -673,7 +673,7 @@ There is a lot of explanatory text, comments, etc. You do not need these, so del
 -   Approximately how much time did you spend on this problem set: 2 hours
 -   What, if anything, gave you the most trouble: ANSWER HERE
 
-**Please seek out help when you need it,** and remember the [15-minute rule](https://mam2022.netlify.app/syllabus/#the-15-minute-rule){target="_blank"}. You know enough R (and have enough examples of code from class and your readings) to be able to do this. If you get stuck, ask for help from others, post a question on Slack-- and remember that I am here to help too!
+**Please seek out help when you need it,** and remember the [15-minute rule](https://mam2022.netlify.app/syllabus/#the-15-minute-rule){target="\_blank"}. You know enough R (and have enough examples of code from class and your readings) to be able to do this. If you get stuck, ask for help from others, post a question on Slack-- and remember that I am here to help too!
 
 > As a true test to yourself, do you understand the code you submitted and are you able to explain it to someone else?
 
