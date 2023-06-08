@@ -22,7 +22,7 @@ title: Risk-Return of DJIA stocks
 knitr::include_graphics(here::here("static/img/pic1.jpg"))
 ```
 
-<img src="../../static/img/pic1.jpg" style="display: block; margin: auto;" />
+<img src="../../static/img/pic1.jpg" width="1200" style="display: block; margin: auto;" />
 
 ```r
 # read and show brexit results

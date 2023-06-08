@@ -1,19 +1,14 @@
 ---
-title: 'Homework 4: Machine Learning'
-author: "Jean-Michel Staelens"
-date: "`r Sys.Date()`"
-output:
-  word_document:
-    toc: yes
-  pdf_document:
-    toc: yes
-  html_document:
-    theme: flatly
-    highlight: zenburn
-    number_sections: yes
-    toc: yes
-    toc_float: yes
-    code_folding: show
+categories:
+- ""
+- ""
+date: "2022-06-08"
+description: Introduction to Machine Learning model evaluation
+draft: false
+image: pic09.jpg
+keywords: ""
+slug: magna
+title: Homework 4
 ---
 
 ```{r}

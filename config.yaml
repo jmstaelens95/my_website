@@ -103,7 +103,7 @@ params:
       - image: Vincent_van_Gogh.jpg
         subtitle: Introduction to Machine Learning
         title: Homework 4
-        url: blogs/homework4.Rmd
+        url: blogs/homework4
   two:
     buttonText: Get Started
     enable: yes

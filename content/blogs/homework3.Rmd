@@ -1,6 +1,6 @@
 ---
 title: 'Homework 3: Databases, web scraping, and a basic Shiny app'
-author: "Your name goes here"
+author: "Jean-Michel Staelens"
 date: "`r Sys.Date()`"
 output:
   word_document:
