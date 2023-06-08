@@ -5,29 +5,10 @@ categories:
 date: "2022-06-08"
 description: Introduction to Machine Learning model evaluation
 draft: false
-image: pic09.jpg
+image: pic02.jpg
 keywords: ""
 slug: magna
 title: Homework 4
----
-
----
-
-title: 'Homework 4: Machine Learning'
-author: "Jean-Michel Staelens"
-date: "2023-06-08"
-output:
-  word_document:
-    toc: yes
-  pdf_document:
-    toc: yes
-  html_document:
-    theme: flatly
-    highlight: zenburn
-    number_sections: yes
-    toc: yes
-    toc_float: yes
-    code_folding: show
 ---
 
 
@@ -1020,7 +1001,11 @@ There were issues with some computations   A: x8   B: x8
 
 There were issues with some computations   A: x9   B: x8
 
+There were issues with some computations   A: x9   B: x9
+
 There were issues with some computations   A: x10   B: x9
+
+There were issues with some computations   A: x10   B: x10
 
 There were issues with some computations   A: x10   B: x10
 ```
