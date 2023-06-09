@@ -99,7 +99,7 @@ params:
       - image: Johannes_Vermeer.jpg
         subtitle: Introduction to web scraping
         title: Homework 3
-        url: blogs/blog3
+        url: blogs/homework3
       - image: Vincent_van_Gogh.jpg
         subtitle: Introduction to Machine Learning
         title: Bechdel test

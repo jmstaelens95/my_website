@@ -8,7 +8,7 @@ draft: false
 image: pic2.jpg
 keywords: ""
 slug: homework4
-title: Homework 4
+title: The Bechdel test
 ---
 
 ```{r, setup, echo=FALSE}
@@ -44,8 +44,6 @@ library(here)
 library(scales)
 library(vip)
 ```
-
-# The Bechdel Test
 
 <https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/>
 

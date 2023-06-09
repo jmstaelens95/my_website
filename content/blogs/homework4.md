@@ -8,10 +8,8 @@ draft: false
 image: pic2.jpg
 keywords: ""
 slug: homework4
-title: Homework 4
+title: The Bechdel Test
 ---
-
-# The Bechdel Test
 
 <https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/>
 
@@ -558,8 +556,7 @@ movie_rec
 
 What if there were no films with `rated` NC-17 in the training data?
 
--   Will the model have a coefficient for `rated` NC-17?
-    No, the model will not have a coefficient for rated NC-17.
+-   Will the model have a coefficient for `rated` NC-17? No, the model will not have a coefficient for rated NC-17.
 
 -   What will happen if the test data includes a film with `rated` NC-17?
 
