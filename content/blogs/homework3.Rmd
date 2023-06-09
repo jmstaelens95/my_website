@@ -1,14 +1,12 @@
 ---
-categories:
-- ""
-- ""
+title: "Money in UK politics"
 date: "2022-06-08"
 description: Introduction to data wrangling at scale
-draft: false
-image: pic2.jpg
-keywords: ""
+draft: no
+image: markrutte.jpg
+keywords: ''
 slug: homework3
-title: Money in UK politics
+categories: null
 ---
 
 ```{r, setup, echo=FALSE}

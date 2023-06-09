@@ -70,7 +70,7 @@ params:
         url: '#'
       - name: Blogs
         url: blogs
-      - name: Generic Blog
+      - name: Quick intro to The Netherlands
         url: blogs/ipsum
       - name: Elements
         url: elements.html
@@ -90,15 +90,15 @@ params:
         url: https://www.staelens.nl
       - image: kurhaus.jpg
         subtitle: Introduction to data manipulation
-        title: Homework 1
-        url: blogs/blog1
+        title: babynames
+        url: blogs/babynames
       - image: mondrian_composition.jpg
-        subtitle: Introduction to data visualization
-        title: Homework 2
-        url: blogs/blog2
+        subtitle: Predicting credit card fraud
+        title: Credit card fraud
+        url: blogs/groupwork
       - image: Johannes_Vermeer.jpg
-        subtitle: Introduction to web scraping
-        title: Homework 3
+        subtitle: Introduction to data wrangling at scale
+        title: Money in UK politics
         url: blogs/homework3
       - image: Vincent_van_Gogh.jpg
         subtitle: Introduction to Machine Learning
