@@ -7,13 +7,9 @@ description: Introduction to Machine Learning model evaluation
 draft: false
 image: pic2.jpg
 keywords: ""
-slug: magna
+slug: homework4
 title: Homework 4
 ---
-
-
-
-
 
 # The Bechdel Test
 
@@ -21,20 +17,19 @@ title: Homework 4
 
 The [Bechdel test](https://bechdeltest.com) is a way to assess how women are depicted in Hollywood movies. In order for a movie to pass the test:
 
-1.  It has to have at least two [named] women in it
+1.  It has to have at least two \[named\] women in it
 2.  Who talk to each other
 3.  About something besides a man
 
 There is a nice article and analysis you can find here <https://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/> We have a sample of 1394 movies and we want to fit a model to predict whether a film passes the test or not.
 
-
-```r
+``` r
 bechdel <- read_csv(here::here("data", "bechdel.csv")) %>% 
   mutate(test = factor(test)) 
 glimpse(bechdel)
 ```
 
-```
+```         
 ## Rows: 1,394
 ## Columns: 10
 ## $ year          <dbl> 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 20…
@@ -51,8 +46,7 @@ glimpse(bechdel)
 
 How many films fail/pass the test, both as a number and as a %?
 
-
-```r
+``` r
 bechdel %>%
   # count number of observation per test value
   count(test) %>%
@@ -60,7 +54,7 @@ bechdel %>%
   mutate(prop = n/sum(n))
 ```
 
-```
+```         
 ## # A tibble: 2 × 3
 ##   test      n  prop
 ##   <fct> <int> <dbl>
@@ -70,8 +64,7 @@ bechdel %>%
 
 ## Movie scores
 
-
-```r
+``` r
 ggplot(data = bechdel, aes(
   x = metascore,
   y = imdb_rating,
@@ -91,8 +84,7 @@ ggplot(data = bechdel, aes(
 
 # Split the data
 
-
-```r
+``` r
 # **Split the data**
 
 set.seed(123)
@@ -107,8 +99,7 @@ bechdel_test <- testing(data_split)
 
 Check the counts and % (proportions) of the `test` variable in each set.
 
-
-```r
+``` r
 # train set
 bechdel_train %>%
   # count number of observation per test value
@@ -117,7 +108,7 @@ bechdel_train %>%
   mutate(prop = n/sum(n))
 ```
 
-```
+```         
 ## # A tibble: 2 × 3
 ##   test      n  prop
 ##   <fct> <int> <dbl>
@@ -125,7 +116,7 @@ bechdel_train %>%
 ## 2 Pass    497 0.446
 ```
 
-```r
+``` r
 # test set
 bechdel_test %>%
   # count number of observation per test value
@@ -134,7 +125,7 @@ bechdel_test %>%
   mutate(prop = n/sum(n))
 ```
 
-```
+```         
 ## # A tibble: 2 × 3
 ##   test      n  prop
 ##   <fct> <int> <dbl>
@@ -142,7 +133,7 @@ bechdel_test %>%
 ## 2 Pass    125 0.446
 ```
 
-```r
+``` r
 # the fail - pass split in both sets is about 55% which is consistent and in line with the split in the original dataset. We believe both the train and the test dataset are therefore representable.
 ```
 
@@ -150,8 +141,7 @@ bechdel_test %>%
 
 ## Any outliers?
 
-
-```r
+``` r
 bechdel %>% 
   select(test, budget_2013, domgross_2013, intgross_2013, imdb_rating, metascore) %>% 
 
@@ -170,7 +160,7 @@ bechdel %>%
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-6-1.png" width="648" style="display: block; margin: auto;" />
 
-```r
+``` r
 # Outliers can be observed for every variable. THe domestic and international gross revenue variable however seems to be particularly sensitive to outliers. To a lower degree, outliers are commen in the budget_2013 variable (and the imdb_rating). Therefore, there are indications it might be worhtwile to transform this data moving forward. 
 ```
 
@@ -178,8 +168,7 @@ bechdel %>%
 
 Write a paragraph discussing the output of the following
 
-
-```r
+``` r
 bechdel %>% 
   select(test, budget_2013, domgross_2013, intgross_2013, imdb_rating, metascore)%>% 
   ggpairs(aes(colour=test), alpha=0.2)+
@@ -188,8 +177,7 @@ bechdel %>%
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-7-1.png" width="648" style="display: block; margin: auto;" />
 
-
-```r
+``` r
 # First, we observe that international and domestic gross product is highly correlated. Consequently, it might be better to only corporate one of these variables into our model. Additionally, to a lesser extent we can draw the same conclusion in regards to the meta- and imdb score as critics generally seem to align their verdicts. Finally, a higher budget generally seems to lead to higher revenues but does not translate to better scores.
 
 # second, in line with what we previously concluded, certain variables seem to have a highly skewed distribution. For example, budget and dom / inter gross revenue seem to be particularly highly skewed towards the rights. Potentially, the log or expenont of these variables is a more valuable predictor.
@@ -199,15 +187,14 @@ bechdel %>%
 
 Write a paragraph discussing the output of the following
 
-
-```r
+``` r
 bechdel %>% 
   group_by(genre, test) %>%
   summarise(n = n()) %>% 
   mutate(prop = n/sum(n))
 ```
 
-```
+```         
 ## # A tibble: 24 × 4
 ## # Groups:   genre [14]
 ##    genre     test      n  prop
@@ -225,7 +212,7 @@ bechdel %>%
 ## # ℹ 14 more rows
 ```
 
-```r
+``` r
 # There seems to be a strong correlation between movie genre and the likelihood that the movie will pass the bechdel test. Action movies for example fail on about 70% of the occasion in comparison to an overall fail grade of 55%. Animations seem to have a higher likelihood to fail as well at 67% in contrast to comedies where the overal fail grade is only 43%.
 
 bechdel %>% 
@@ -234,7 +221,7 @@ bechdel %>%
   mutate(prop = n/sum(n))
 ```
 
-```
+```         
 ## # A tibble: 10 × 4
 ## # Groups:   rated [5]
 ##    rated test      n  prop
@@ -251,14 +238,13 @@ bechdel %>%
 ## 10 R     Pass    269 0.432
 ```
 
-```r
+``` r
 # The rating seems to be slightly correlated but to a much lower extent than the movie genre. In addition, there might be an underlying correlation between rating and genre. Overall, most proportions seem to be in line with the expected overall averages in exception of the NC-17 rating. However, due to the low sample of 6 movies with this rating we cannot draw too much value to this observation.
 ```
 
 # Train first models. `test ~ metascore + imdb_rating`
 
-
-```r
+``` r
 lr_mod <- logistic_reg() %>% 
   set_engine(engine = "glm") %>% 
   set_mode("classification")
@@ -266,13 +252,13 @@ lr_mod <- logistic_reg() %>%
 lr_mod
 ```
 
-```
+```         
 ## Logistic Regression Model Specification (classification)
 ## 
 ## Computational engine: glm
 ```
 
-```r
+``` r
 tree_mod <- decision_tree() %>% 
   set_engine(engine = "C5.0") %>% 
   set_mode("classification")
@@ -280,14 +266,13 @@ tree_mod <- decision_tree() %>%
 tree_mod 
 ```
 
-```
+```         
 ## Decision Tree Model Specification (classification)
 ## 
 ## Computational engine: C5.0
 ```
 
-
-```r
+``` r
 lr_fit <- lr_mod %>% # parsnip model
   fit(test ~ metascore + imdb_rating, # a formula
     data = bechdel_train # dataframe
@@ -301,13 +286,12 @@ tree_fit <- tree_mod %>% # parsnip model
 
 ## Logistic regression
 
-
-```r
+``` r
 lr_fit %>%
   broom::tidy()
 ```
 
-```
+```         
 ## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
@@ -316,7 +300,7 @@ lr_fit %>%
 ## 3 imdb_rating  -0.625    0.100       -6.24 4.36e-10
 ```
 
-```r
+``` r
 lr_preds <- lr_fit %>%
   augment(new_data = bechdel_train) %>%
   mutate(.pred_match = if_else(test == .pred_class, 1, 0))
@@ -324,8 +308,7 @@ lr_preds <- lr_fit %>%
 
 ### Confusion matrix
 
-
-```r
+``` r
 lr_preds %>% 
   conf_mat(truth = test, estimate = .pred_class) %>% 
   autoplot(type = "heatmap")
@@ -335,15 +318,13 @@ lr_preds %>%
 
 ## Decision Tree
 
-
-```r
+``` r
 tree_preds <- tree_fit %>%
   augment(new_data = bechdel) %>%
   mutate(.pred_match = if_else(test == .pred_class, 1, 0)) 
 ```
 
-
-```r
+``` r
 tree_preds %>% 
   conf_mat(truth = test, estimate = .pred_class) %>% 
   autoplot(type = "heatmap")
@@ -353,8 +334,7 @@ tree_preds %>%
 
 ## Draw the decision tree
 
-
-```r
+``` r
 draw_tree <- 
     rpart::rpart(
         test ~ metascore + imdb_rating,
@@ -371,8 +351,7 @@ plot(draw_tree)
 
 Run the code below. What does it return?
 
-
-```r
+``` r
 set.seed(123)
 bechdel_folds <- vfold_cv(data = bechdel_train, 
                           v = 10, 
@@ -380,7 +359,7 @@ bechdel_folds <- vfold_cv(data = bechdel_train,
 bechdel_folds
 ```
 
-```
+```         
 ## #  10-fold cross-validation using stratification 
 ## # A tibble: 10 × 2
 ##    splits             id    
@@ -401,8 +380,7 @@ bechdel_folds
 
 Trains and tests a resampled model.
 
-
-```r
+``` r
 lr_fit <- lr_mod %>%
   fit_resamples(
     test ~ metascore + imdb_rating,
@@ -421,12 +399,11 @@ tree_fit <- tree_mod %>%
 
 Unnest the metrics column from a tidymodels `fit_resamples()`
 
-
-```r
+``` r
 collect_metrics(lr_fit)
 ```
 
-```
+```         
 ## # A tibble: 2 × 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   <chr>    <chr>      <dbl> <int>   <dbl> <chr>               
@@ -434,11 +411,11 @@ collect_metrics(lr_fit)
 ## 2 roc_auc  binary     0.606    10  0.0189 Preprocessor1_Model1
 ```
 
-```r
+``` r
 collect_metrics(tree_fit)
 ```
 
-```
+```         
 ## # A tibble: 2 × 6
 ##   .metric  .estimator  mean     n std_err .config             
 ##   <chr>    <chr>      <dbl> <int>   <dbl> <chr>               
@@ -446,8 +423,7 @@ collect_metrics(tree_fit)
 ## 2 roc_auc  binary     0.547    10  0.0201 Preprocessor1_Model1
 ```
 
-
-```r
+``` r
 tree_preds <- tree_mod %>% 
   fit_resamples(
     test ~ metascore + imdb_rating, 
@@ -461,7 +437,7 @@ tree_preds %>%
   roc_curve(truth = test, .pred_Fail)  
 ```
 
-```
+```         
 ## # A tibble: 29 × 3
 ##    .threshold specificity sensitivity
 ##         <dbl>       <dbl>       <dbl>
@@ -478,7 +454,7 @@ tree_preds %>%
 ## # ℹ 19 more rows
 ```
 
-```r
+``` r
 # Draw the ROC
 tree_preds %>% 
   collect_predictions() %>% 
@@ -503,7 +479,7 @@ tree_preds %>%
 
 1.  Start the `recipe()`
 2.  Define the variables involved
-3.  Describe **prep**rocessing [step-by-step]
+3.  Describe **prep**rocessing \[step-by-step\]
 
 ## Collapse Some Categorical Levels
 
@@ -511,8 +487,7 @@ Do we have any `genre` with few observations? Assign genres that have less than 
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-21-1.png" width="648" style="display: block; margin: auto;" />
 
-
-```r
+``` r
 movie_rec <-
   recipe(test ~ .,
          data = bechdel_train) %>%
@@ -523,8 +498,7 @@ movie_rec <-
 
 ## Before recipe
 
-
-```
+```         
 ## # A tibble: 14 × 2
 ##    genre           n
 ##    <chr>       <int>
@@ -546,15 +520,14 @@ movie_rec <-
 
 ## After recipe
 
-
-```r
+``` r
 movie_rec %>% 
   prep() %>% 
   bake(new_data = bechdel_train) %>% 
   count(genre, sort = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 9 × 2
 ##   genre         n
 ##   <fct>     <int>
@@ -573,8 +546,7 @@ movie_rec %>%
 
 Converts nominal data into numeric dummy variables
 
-
-```r
+``` r
 movie_rec <- recipe(test ~ ., data = bechdel) %>%
   step_other(genre, threshold = .03) %>% 
   step_dummy(all_nominal_predictors()) 
@@ -586,7 +558,7 @@ movie_rec
 
 What if there were no films with `rated` NC-17 in the training data?
 
--   Will the model have a coefficient for `rated` NC-17?\
+-   Will the model have a coefficient for `rated` NC-17?
     No, the model will not have a coefficient for rated NC-17.
 
 -   What will happen if the test data includes a film with `rated` NC-17?
@@ -597,8 +569,7 @@ What if there were no films with `rated` NC-17 in the training data?
 
 Adds a catch-all level to a factor for any new values not encountered in model training, which lets R intelligently predict new levels in the test set.
 
-
-```r
+``` r
 movie_rec <- recipe(test ~ ., data = bechdel) %>%
   step_other(genre, threshold = .03) %>% 
   step_novel(all_nominal_predictors) %>% # Use *before* `step_dummy()` so new level is dummified
@@ -609,8 +580,7 @@ movie_rec <- recipe(test ~ ., data = bechdel) %>%
 
 Intelligently handles zero variance variables (variables that contain only a single value)
 
-
-```r
+``` r
 movie_rec <- recipe(test ~ ., data = bechdel) %>%
   step_other(genre, threshold = .03) %>% 
   step_novel(all_nominal(), -all_outcomes()) %>% # Use *before* `step_dummy()` so new level is dummified
@@ -622,8 +592,7 @@ movie_rec <- recipe(test ~ ., data = bechdel) %>%
 
 Centers then scales numeric variable (mean = 0, sd = 1)
 
-
-```r
+``` r
 movie_rec <- recipe(test ~ ., data = bechdel) %>%
   step_other(genre, threshold = .03) %>% 
   step_novel(all_nominal(), -all_outcomes()) %>% # Use *before* `step_dummy()` so new level is dummified
@@ -636,8 +605,7 @@ movie_rec <- recipe(test ~ ., data = bechdel) %>%
 
 Removes highly correlated variables
 
-
-```r
+``` r
 movie_rec <- recipe(test ~ ., data = bechdel) %>%
   step_other(genre, threshold = .03) %>% 
   step_novel(all_nominal(), -all_outcomes()) %>% # Use *before* `step_dummy()` so new level is dummified
@@ -653,8 +621,7 @@ movie_rec
 
 # Define different models to fit
 
-
-```r
+``` r
 ## Model Building
 
 # 1. Pick a `model type`
@@ -670,13 +637,13 @@ log_spec <-  logistic_reg() %>%  # model type
 log_spec
 ```
 
-```
+```         
 ## Logistic Regression Model Specification (classification)
 ## 
 ## Computational engine: glm
 ```
 
-```r
+``` r
 # Decision Tree
 tree_spec <- decision_tree() %>%
   set_engine(engine = "C5.0") %>%
@@ -685,13 +652,13 @@ tree_spec <- decision_tree() %>%
 tree_spec
 ```
 
-```
+```         
 ## Decision Tree Model Specification (classification)
 ## 
 ## Computational engine: C5.0
 ```
 
-```r
+``` r
 # Random Forest
 library(ranger)
 
@@ -718,8 +685,7 @@ knn_spec <-
 
 # Bundle recipe and model with `workflows`
 
-
-```r
+``` r
 log_wflow <- # new workflow object
  workflow() %>% # use workflow function
  add_recipe(movie_rec) %>%   # use the new recipe
@@ -729,7 +695,7 @@ log_wflow <- # new workflow object
 log_wflow
 ```
 
-```
+```         
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: logistic_reg()
@@ -749,7 +715,7 @@ log_wflow
 ## Computational engine: glm
 ```
 
-```r
+``` r
 ## A few more workflows
 
 tree_wflow <-
@@ -791,8 +757,7 @@ HEADS UP
 
 You now have all your models. Adapt the code from slides `code-from-slides-CA-housing.R`, line 400 onwards to assess which model gives you the best classification.
 
-
-```r
+``` r
 ## Evaluate Models
 
 # Use k-fold cross validation to build a set of 10 validation folds
@@ -819,7 +784,7 @@ log_res <- log_wflow %>%
 log_res %>%  collect_metrics(summarize = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 8 × 6
 ##   .metric   .estimator    mean     n std_err .config             
 ##   <chr>     <chr>        <dbl> <int>   <dbl> <chr>               
@@ -833,12 +798,12 @@ log_res %>%  collect_metrics(summarize = TRUE)
 ## 8 spec      binary      0.489     10  0.0435 Preprocessor1_Model1
 ```
 
-```r
+``` r
 # Show performance for every single fold:
 log_res %>%  collect_metrics(summarize = FALSE)
 ```
 
-```
+```         
 ## # A tibble: 80 × 5
 ##    id     .metric   .estimator .estimate .config             
 ##    <chr>  <chr>     <chr>          <dbl> <chr>               
@@ -855,7 +820,7 @@ log_res %>%  collect_metrics(summarize = FALSE)
 ## # ℹ 70 more rows
 ```
 
-```r
+``` r
 ## `collect_predictions()` and get confusion matrix{.smaller}
 
 log_pred <- log_res %>% collect_predictions()
@@ -863,14 +828,14 @@ log_pred <- log_res %>% collect_predictions()
 log_pred %>%  conf_mat(test, .pred_class) 
 ```
 
-```
+```         
 ##           Truth
 ## Prediction Fail Pass
 ##       Fail  289  254
 ##       Pass  328  243
 ```
 
-```r
+``` r
 log_pred %>% 
   conf_mat(test, .pred_class) %>% 
   autoplot(type = "mosaic") +
@@ -882,7 +847,7 @@ log_pred %>%
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-1.png" width="648" style="display: block; margin: auto;" />
 
-```r
+``` r
 log_pred %>% 
   conf_mat(test, .pred_class) %>% 
   autoplot(type = "heatmap")
@@ -890,7 +855,7 @@ log_pred %>%
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-2.png" width="648" style="display: block; margin: auto;" />
 
-```r
+``` r
 ## Decision Tree results
 
 tree_res <-
@@ -907,7 +872,7 @@ tree_res <-
 tree_res %>% collect_metrics(summarize = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 8 × 6
 ##   .metric   .estimator  mean     n std_err .config             
 ##   <chr>     <chr>      <dbl> <int>   <dbl> <chr>               
@@ -921,7 +886,7 @@ tree_res %>% collect_metrics(summarize = TRUE)
 ## 8 spec      binary     0.530    10  0.0283 Preprocessor1_Model1
 ```
 
-```r
+``` r
 ## Random Forest
 
 rf_res <-
@@ -938,7 +903,7 @@ rf_res <-
 rf_res %>%  collect_metrics(summarize = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 8 × 6
 ##   .metric   .estimator  mean     n std_err .config             
 ##   <chr>     <chr>      <dbl> <int>   <dbl> <chr>               
@@ -952,7 +917,7 @@ rf_res %>%  collect_metrics(summarize = TRUE)
 ## 8 spec      binary     0.464    10  0.0214 Preprocessor1_Model1
 ```
 
-```r
+``` r
 ## Boosted tree - XGBoost
 
 xgb_res <- 
@@ -969,7 +934,7 @@ xgb_res <-
 xgb_res %>% collect_metrics(summarize = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 8 × 6
 ##   .metric   .estimator  mean     n std_err .config             
 ##   <chr>     <chr>      <dbl> <int>   <dbl> <chr>               
@@ -983,7 +948,7 @@ xgb_res %>% collect_metrics(summarize = TRUE)
 ## 8 spec      binary     0.539    10  0.0295 Preprocessor1_Model1
 ```
 
-```r
+``` r
 ## K-nearest neighbour
 
 knn_res <- 
@@ -1000,7 +965,7 @@ knn_res <-
 knn_res %>% collect_metrics(summarize = TRUE)
 ```
 
-```
+```         
 ## # A tibble: 8 × 6
 ##   .metric   .estimator     mean     n std_err .config             
 ##   <chr>     <chr>         <dbl> <int>   <dbl> <chr>               
@@ -1014,7 +979,7 @@ knn_res %>% collect_metrics(summarize = TRUE)
 ## 8 spec      binary     0.104       10 0.0996  Preprocessor1_Model1
 ```
 
-```r
+``` r
 ## Model Comparison
 
 log_metrics <- 
@@ -1076,28 +1041,8 @@ model_comp %>%
 
 <img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-3.png" width="648" style="display: block; margin: auto;" />
 
-```r
+``` r
 ### this shows that the random forest model has the strongest performance at an auc of .66, closely followed by the XGboost model with .64.
 ```
 
-# Deliverables
-
-There is a lot of explanatory text, comments, etc. You do not need these, so delete them and produce a stand-alone document that you could share with someone. Knit the edited and completed R Markdown (Rmd) file as a Word or HTML document (use the "Knit" button at the top of the script editor window) and upload it to Canvas. You must be commiting and pushing your changes to your own Github repo as you go along.
-
-# Details
-
--   Who did you collaborate with: NONE
--   Approximately how much time did you spend on this problem set: 2 hours
--   What, if anything, gave you the most trouble: Test model
-
-**Please seek out help when you need it,** and remember the [15-minute rule](https://dsb2023.netlify.app/syllabus/#the-15-minute-rule){target="_blank"}. You know enough R (and have enough examples of code from class and your readings) to be able to do this. If you get stuck, ask for help from others, post a question on Slack-- and remember that I am here to help too!
-
-> As a true test to yourself, do you understand the code you submitted and are you able to explain it to someone else?
-
-# Rubric
-
-13/13: Problem set is 100% completed. Every question was attempted and answered, and most answers are correct. Code is well-documented (both self-documented and with additional comments as necessary). Used tidyverse, instead of base R. Graphs and tables are properly labelled. Analysis is clear and easy to follow, either because graphs are labeled clearly or you've written additional text to describe how you interpret the output. Multiple Github commits. Work is exceptional. I will not assign these often.
-
-8/13: Problem set is 60--80% complete and most answers are correct. This is the expected level of performance. Solid effort. Hits all the elements. No clear mistakes. Easy to follow (both the code and the output). A few Github commits.
-
-5/13: Problem set is less than 60% complete and/or most answers are incorrect. This indicates that you need to improve next time. I will hopefully not assign these often. Displays minimal effort. Doesn't complete all components. Code is poorly written and not documented. Uses the same type of plot for each graph, or doesn't use plots appropriate for the variables being analyzed. No Github commits.
+# 

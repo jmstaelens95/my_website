@@ -12,25 +12,20 @@ slug: risk_return # slug is the shorthand URL address... no spaces plz
 title: Risk-Return of DJIA stocks
 ---
 
-
-
-
-
-
-```r
+``` r
 # add a nice tulip picture
 knitr::include_graphics(here::here("static/img/pic1.jpg"))
 ```
 
 <img src="../../static/img/pic1.jpg" width="1200" style="display: block; margin: auto;" />
 
-```r
+``` r
 # read and show brexit results
 brexit_results <- read_csv(here::here("data","brexit_results.csv"))
 glimpse(brexit_results)
 ```
 
-```
+```         
 ## Rows: 632
 ## Columns: 11
 ## $ Seat        <chr> "Aldershot", "Aldridge-Brownhills", "Altrincham and Sale W…
@@ -52,8 +47,7 @@ Next, let's choose the [Dow Jones Industrial Average (DJIA)](https://en.wikipedi
 
 We will use the `rvest` package to scrape the Wikipedia page for the constituents of DJIA
 
-
-```r
+``` r
 djia_url <- "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
 
 
@@ -91,8 +85,7 @@ tickers <- table1 %>%
   c("SPY", "^VIX") # and lets us add SPY, the SP500 ETF, and the VIX index
 ```
 
-
-```r
+``` r
 # Notice the cache=TRUE argument in the chunk options. Because getting data is time consuming, # cache=TRUE means that once it downloads data, the chunk will not run again next time you knit your Rmd
 
 myStocks <- tickers %>% 
@@ -103,7 +96,7 @@ myStocks <- tickers %>%
 glimpse(myStocks) # examine the structure of the resulting data frame
 ```
 
-```
+```         
 ## Rows: 180,777
 ## Columns: 8
 ## Groups: symbol [32]
@@ -119,8 +112,7 @@ glimpse(myStocks) # examine the structure of the resulting data frame
 
 Financial performance analysis depend on returns; If I buy a stock today for 100 and I sell it tomorrow for 101.75, my one-day return, assuming no transaction costs, is 1.75%. So given the adjusted closing prices, our first step is to calculate daily and monthly returns.
 
-
-```r
+``` r
 #calculate daily returns
 myStocks_returns_daily <- myStocks %>%
   tq_transmute(select     = adjusted, 
@@ -140,8 +132,7 @@ myStocks_returns_monthly <- myStocks %>%
                cols = c(nested.col)) 
 ```
 
-
-```r
+``` r
 #visualise monthly returns since 2010, for each of the 30 DJIA stocks
 myStocks_returns_monthly %>% 
   filter(symbol != "^VIX", symbol != "SPY") %>% 

@@ -15,7 +15,7 @@ params:
     address:
       - city: London, AA1 2BB
         country: United Kingdom
-        street: Abbey Road
+        street: Regent Street
         title: Address
     buttonClear: Clear
     buttonSend: Send message
@@ -91,19 +91,19 @@ params:
       - image: kurhaus.jpg
         subtitle: Introduction to data manipulation
         title: Homework 1
-        url: blogs/homework1.qmd
+        url: blogs/blog1
       - image: mondrian_composition.jpg
         subtitle: Introduction to data visualization
         title: Homework 2
-        url: blogs/homework2
+        url: blogs/blog2
       - image: Johannes_Vermeer.jpg
         subtitle: Introduction to web scraping
         title: Homework 3
-        url: blogs/homework3.Rmd
+        url: blogs/blog3
       - image: Vincent_van_Gogh.jpg
         subtitle: Introduction to Machine Learning
-        title: Homework 4
-        url: blogs/homework4.md
+        title: Bechdel test
+        url: blogs/homework4
   two:
     buttonText: Get Started
     enable: yes
