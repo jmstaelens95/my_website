@@ -5,11 +5,13 @@ categories:
 date: "2022-06-08"
 description: Introduction to Machine Learning model evaluation
 draft: false
-image: pic02.jpg
+image: pic2.jpg
 keywords: ""
 slug: magna
 title: Homework 4
 ---
+
+
 
 
 
@@ -29,20 +31,6 @@ There is a nice article and analysis you can find here <https://fivethirtyeight.
 ```r
 bechdel <- read_csv(here::here("data", "bechdel.csv")) %>% 
   mutate(test = factor(test)) 
-```
-
-```
-## Rows: 1394 Columns: 10
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (4): title, test, rated, genre
-## dbl (6): year, budget_2013, domgross_2013, intgross_2013, metascore, imdb_ra...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-```r
 glimpse(bechdel)
 ```
 
@@ -53,8 +41,8 @@ glimpse(bechdel)
 ## $ title         <chr> "12 Years a Slave", "2 Guns", "42", "47 Ronin", "A Good …
 ## $ test          <fct> Fail, Fail, Fail, Fail, Fail, Pass, Pass, Fail, Pass, Pa…
 ## $ budget_2013   <dbl> 2.00, 6.10, 4.00, 22.50, 9.20, 1.20, 1.30, 13.00, 4.00, …
-## $ domgross_2013 <dbl> 5.3107035, 7.5612460, 9.5020213, 3.8362475, 6.7349198, 1…
-## $ intgross_2013 <dbl> 15.8607035, 13.2493015, 9.5020213, 14.5803842, 30.424919…
+## $ domgross_2013 <dbl> 5.311, 7.561, 9.502, 3.836, 6.735, 1.532, 1.801, 6.052, …
+## $ intgross_2013 <dbl> 15.861, 13.249, 9.502, 14.580, 30.425, 8.732, 1.801, 24.…
 ## $ rated         <chr> "R", "R", "PG-13", "PG-13", "R", "R", "PG-13", "PG-13", …
 ## $ metascore     <dbl> 97, 55, 62, 29, 28, 55, 48, 33, 90, 58, 52, 78, 83, 53, …
 ## $ imdb_rating   <dbl> 8.3, 6.8, 7.6, 6.6, 5.4, 7.8, 5.7, 5.0, 7.5, 7.4, 6.2, 7…
@@ -99,7 +87,7 @@ ggplot(data = bechdel, aes(
  theme_light()
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-3-1.png" width="648" style="display: block; margin: auto;" />
 
 # Split the data
 
@@ -180,7 +168,7 @@ bechdel %>%
   labs(x=NULL,y = NULL)
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-6-1.png" width="648" style="display: block; margin: auto;" />
 
 ```r
 # Outliers can be observed for every variable. THe domestic and international gross revenue variable however seems to be particularly sensitive to outliers. To a lower degree, outliers are commen in the budget_2013 variable (and the imdb_rating). Therefore, there are indications it might be worhtwile to transform this data moving forward. 
@@ -198,7 +186,7 @@ bechdel %>%
   theme_bw()
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-7-1.png" width="648" style="display: block; margin: auto;" />
 
 
 ```r
@@ -217,11 +205,6 @@ bechdel %>%
   group_by(genre, test) %>%
   summarise(n = n()) %>% 
   mutate(prop = n/sum(n))
-```
-
-```
-## `summarise()` has grouped output by 'genre'. You can override using the
-## `.groups` argument.
 ```
 
 ```
@@ -249,11 +232,6 @@ bechdel %>%
   group_by(rated, test) %>%
   summarise(n = n()) %>% 
   mutate(prop = n/sum(n))
-```
-
-```
-## `summarise()` has grouped output by 'rated'. You can override using the
-## `.groups` argument.
 ```
 
 ```
@@ -353,7 +331,7 @@ lr_preds %>%
   autoplot(type = "heatmap")
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-13-1.png" width="648" style="display: block; margin: auto;" />
 
 ## Decision Tree
 
@@ -371,7 +349,7 @@ tree_preds %>%
   autoplot(type = "heatmap")
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-15-1.png" width="648" style="display: block; margin: auto;" />
 
 ## Draw the decision tree
 
@@ -387,7 +365,7 @@ draw_tree <-
 plot(draw_tree)
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-16-1.png" width="648" style="display: block; margin: auto;" />
 
 # Cross Validation
 
@@ -437,10 +415,6 @@ tree_fit <- tree_mod %>%
     test ~ metascore + imdb_rating,
     resamples = bechdel_folds
   )
-```
-
-```
-## Warning: package 'C50' was built under R version 4.2.3
 ```
 
 ## `collect_metrics()`
@@ -512,7 +486,7 @@ tree_preds %>%
   autoplot()
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-20-1.png" width="648" style="display: block; margin: auto;" />
 
 # Build a better training set with `recipes`
 
@@ -535,7 +509,7 @@ tree_preds %>%
 
 Do we have any `genre` with few observations? Assign genres that have less than 3% to a new category 'Other'
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-21-1.png" width="648" style="display: block; margin: auto;" />
 
 
 ```r
@@ -608,47 +582,6 @@ movie_rec <- recipe(test ~ ., data = bechdel) %>%
 movie_rec 
 ```
 
-```
-## 
-```
-
-```
-## ── Recipe ──────────────────────────────────────────────────────────────────────
-```
-
-```
-## 
-```
-
-```
-## ── Inputs
-```
-
-```
-## Number of variables by role
-```
-
-```
-## outcome:   1
-## predictor: 9
-```
-
-```
-## 
-```
-
-```
-## ── Operations
-```
-
-```
-## • Collapsing factor levels for: genre
-```
-
-```
-## • Dummy variables from: all_nominal_predictors()
-```
-
 ## Let's think about the modelling
 
 What if there were no films with `rated` NC-17 in the training data?
@@ -718,59 +651,6 @@ movie_rec <- recipe(test ~ ., data = bechdel) %>%
 movie_rec
 ```
 
-```
-## 
-```
-
-```
-## ── Recipe ──────────────────────────────────────────────────────────────────────
-```
-
-```
-## 
-```
-
-```
-## ── Inputs
-```
-
-```
-## Number of variables by role
-```
-
-```
-## outcome:   1
-## predictor: 9
-```
-
-```
-## 
-```
-
-```
-## ── Operations
-```
-
-```
-## • Collapsing factor levels for: genre
-```
-
-```
-## • Novel factor level assignment for: all_nominal(), -all_outcomes()
-```
-
-```
-## • Dummy variables from: all_nominal(), -all_outcomes()
-```
-
-```
-## • Zero variance filter on: all_numeric(), -all_outcomes()
-```
-
-```
-## • Centering and scaling for: all_numeric()
-```
-
 # Define different models to fit
 
 
@@ -814,13 +694,7 @@ tree_spec
 ```r
 # Random Forest
 library(ranger)
-```
 
-```
-## Warning: package 'ranger' was built under R version 4.2.3
-```
-
-```r
 rf_spec <- 
   rand_forest() %>% 
   set_engine("ranger", importance = "impurity") %>% 
@@ -829,24 +703,7 @@ rf_spec <-
 
 # Boosted tree (XGBoost)
 library(xgboost)
-```
 
-```
-## Warning: package 'xgboost' was built under R version 4.2.3
-```
-
-```
-## 
-## Attaching package: 'xgboost'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     slice
-```
-
-```r
 xgb_spec <- 
   boost_tree() %>% 
   set_engine("xgboost") %>% 
@@ -957,62 +814,7 @@ log_res <- log_wflow %>%
       recall, precision, f_meas, accuracy,
       kap, roc_auc, sens, spec),
     control = control_resamples(save_pred = TRUE)) 
-```
 
-```
-## → A | warning: glm.fit: algorithm did not converge
-```
-
-```
-## 
-There were issues with some computations   A: x1
-
-                                                 
-→ B | warning: prediction from a rank-deficient fit may be misleading
-## There were issues with some computations   A: x1
-
-There were issues with some computations   A: x1   B: x1
-
-There were issues with some computations   A: x2   B: x1
-
-There were issues with some computations   A: x2   B: x2
-
-There were issues with some computations   A: x3   B: x2
-
-There were issues with some computations   A: x3   B: x3
-
-There were issues with some computations   A: x4   B: x3
-
-There were issues with some computations   A: x4   B: x4
-
-There were issues with some computations   A: x5   B: x4
-
-There were issues with some computations   A: x5   B: x5
-
-There were issues with some computations   A: x6   B: x5
-
-There were issues with some computations   A: x6   B: x6
-
-There were issues with some computations   A: x7   B: x6
-
-There were issues with some computations   A: x7   B: x7
-
-There were issues with some computations   A: x8   B: x7
-
-There were issues with some computations   A: x8   B: x8
-
-There were issues with some computations   A: x9   B: x8
-
-There were issues with some computations   A: x9   B: x9
-
-There were issues with some computations   A: x10   B: x9
-
-There were issues with some computations   A: x10   B: x10
-
-There were issues with some computations   A: x10   B: x10
-```
-
-```r
 # Show average performance over all folds (note that we use log_res):
 log_res %>%  collect_metrics(summarize = TRUE)
 ```
@@ -1078,7 +880,7 @@ log_pred %>%
       label = c("TP", "FN", "FP", "TN")))
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-1.png" width="648" style="display: block; margin: auto;" />
 
 ```r
 log_pred %>% 
@@ -1086,7 +888,7 @@ log_pred %>%
   autoplot(type = "heatmap")
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-2.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-2.png" width="648" style="display: block; margin: auto;" />
 
 ```r
 ## Decision Tree results
@@ -1194,23 +996,7 @@ knn_res <-
       roc_auc, sens, spec),
     control = control_resamples(save_pred = TRUE)
     ) 
-```
 
-```
-## Warning: package 'kknn' was built under R version 4.2.3
-```
-
-```
-## → A | warning: While computing binary `precision()`, no predicted events were detected (i.e. `true_positive + false_positive = 0`). 
-##                Precision is undefined in this case, and `NA` will be returned.
-##                Note that 61 true event(s) actually occured for the problematic event level, 'Fail'.
-## 
-There were issues with some computations   A: x1
-
-There were issues with some computations   A: x1
-```
-
-```r
 knn_res %>% collect_metrics(summarize = TRUE)
 ```
 
@@ -1288,7 +1074,7 @@ model_comp %>%
   labs(y = NULL)
 ```
 
-<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-3.png" width="672" />
+<img src="/blogs/homework4_files/figure-html/unnamed-chunk-32-3.png" width="648" style="display: block; margin: auto;" />
 
 ```r
 ### this shows that the random forest model has the strongest performance at an auc of .66, closely followed by the XGboost model with .64.
